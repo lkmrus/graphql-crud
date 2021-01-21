@@ -16,6 +16,7 @@
 	"plugins": [
 		"prettier"
 	],
+	"presets": ["env"],
 	"rules": {
 		"indent": ["error", "tab"],
 		"arrow-body-style": ["error", "as-needed"],

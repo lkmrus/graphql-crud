@@ -8,7 +8,9 @@ npm i knex -g
 #npm i pm2@latest -g
 #pm2 update
 cd src/
-npm run migration:up
+knex migration:up
+knex seed:up
 # npm run seed
 # pm2 restart all
+npm run dev
 

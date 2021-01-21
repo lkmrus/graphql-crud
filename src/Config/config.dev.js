@@ -1,24 +1,20 @@
 const dotenv = require('dotenv').config();
 
-let env = null;
-env = dotenv.config().parsed;
-env = process.env;
-
 module.exports = {
 	mysql: {
-		client: 'mysql2',
+		client: 'mysql',
 		connection: {
-			host: env.mysql.MYSQL_HOST,
-			user: env.mysql.MYSQL_USER,
-			password: env.mysql.MYSQL_PASSWORD,
-			database: env.MYSQL_DATABASE,
+			host: process.env.MYSQL_HOST,
+			user: process.env.MYSQL_USER,
+			password: process.env.MYSQL_PASSWORD,
+			database: process.env.MYSQL_DATABASE,
 		},
 		pool: {
 			min: 0,
-			max: 100,
+			max: 10,
 		},
 		migrations: {
-			directory: __dirname + '/src/migrations',
+			directory: './migrations',
 			tableName: 'knex_migrations',
 		},
 		seeds: {
@@ -26,5 +22,22 @@ module.exports = {
 		},
 		acquireConnectionTimeout: 10000,
 		useNullAsDefault: true,
+	},
+	fakedata: {
+		baseUrl: 'https://jsonplaceholder.typicode.com',
+		entities: {
+			posts: {
+				url: '/posts/',
+				count: 50, // max 100
+			},
+			comments: {
+				url: '/comments/',
+				count: 20, // max 500
+			},
+			users: {
+				url: '/users/',
+				count: 10, // max 10
+			},
+		},
 	},
 };

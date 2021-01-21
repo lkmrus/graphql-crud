@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV === 'production') {
-	module.exports = './config.prod';
+	module.exports = require('./config.prod.js');
 } else {
-	module.exports = './config.dev';
+	module.exports = require('./config.dev.js');
 }

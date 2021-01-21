@@ -3,7 +3,7 @@
 const conf = require('./src/Config/default');
 
 module.exports = {
-	development: conf,
-	staging: conf,
-	production: conf,
+	development: conf.mysql,
+	staging: conf.mysql,
+	production: conf.mysql,
 };

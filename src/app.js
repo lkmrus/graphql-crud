@@ -1,13 +1,15 @@
 const express = require('express');
-// const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-
+const { graphqlHTTP } = require('express-graphql');
+const schema = require('./Api/schema');
+const resolver = require('./Api/resolver');
 const app = express();
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use('/api',
+	graphqlHTTP({
+		schema: schema,
+		rootValue: resolver,
+		graphiql: true,
+	})
+);
 
 module.exports = app;
