@@ -18,7 +18,7 @@ exports.up = async function (knex) {
             .defaultTo('')
             .comment('Почта пользователя');
 
-        table.string('body', 255)
+        table.string('body', 1000)
             .index('username')
             .comment('Комментарий');
 

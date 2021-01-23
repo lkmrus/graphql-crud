@@ -1,11 +1,11 @@
-const UserE = require('./Entity/UserE');
-const PostE = require('./Entity/PostE');
-const CommentE = require('./Entity/CommentE');
+const UserM = require('./Models/UserM');
+const PostM = require('./Models/PostM');
+const CommentM = require('./Models/CommentM');
 
 const objResolver = {
-	...UserE,
-	...PostE,
-	...CommentE,
+	...UserM,
+	...PostM,
+	...CommentM,
 };
 
 module.exports = objResolver;

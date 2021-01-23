@@ -6,10 +6,11 @@ module.exports = {
 	/**
 	 * Получить пользователя по айди
 	 * @param {object}
-	 * @returns {{id, name, username, email, update_at, created_at}[]}
+	 * @returns {{id, name, username, email, update_at, created_at}}
 	 */
-	async getUser(objId) {
-		const out = await userSQL.getUser(objId);
+	async getUser(obj) {
+		const out = await userSQL.getUser(obj);
+		return out;
 	},
 
 	/**
@@ -33,16 +34,6 @@ module.exports = {
 	},
 
 	/**
-	 * Пакетная вставка пользователей
-	 * @param {{name, username, email}[]}
-	 * @returns {boolean}
-	 */
-	async addUserPack(userList) {
-		const out = await userSQL.addUserPack(userList);
-		return out;
-	},
-
-	/**
 	 * Обновить данные пользователя
 	 * @param {{id, name, username, email}}
 	 * @returns {boolean}
@@ -57,8 +48,8 @@ module.exports = {
 	 * @param {id}
 	 * @returns {boolean}
 	 */
-	async delUser(objId) {
-		const out = await userSQL.delUser(objId);
+	async delUser(id) {
+		const out = await userSQL.delUser(id);
 		return out;
 	},
 };

@@ -11,7 +11,7 @@ module.exports = {
 		},
 		pool: {
 			min: 0,
-			max: 10,
+			max: 10000,
 		},
 		migrations: {
 			directory: './migrations',
@@ -25,19 +25,5 @@ module.exports = {
 	},
 	fakedata: {
 		baseUrl: 'https://jsonplaceholder.typicode.com',
-		entities: {
-			posts: {
-				url: '/posts/',
-				count: 50, // max 100
-			},
-			comments: {
-				url: '/comments/',
-				count: 20, // max 500
-			},
-			users: {
-				url: '/users/',
-				count: 10, // max 10
-			},
-		},
 	},
 };

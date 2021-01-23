@@ -3,26 +3,26 @@ const postSQL = new PostSQL();
 
 module.exports = {
 	// ================== Запросы ==================
-	async getPost(objId) {
-		const out = true;
+	async getPost(obj) {
+		const out = await postSQL.getPost(obj);
 		return out;
 	},
 	async getPostList() {
-		const out = true;
+		const out = await postSQL.getPostList();
 		return out;
 	},
 
 	// ================== Мутации ==================
-	async addPost(post) {
-		const out = true;
+	async addPost(obj) {
+		const out = await postSQL.addPost(obj);
 		return out;
 	},
-	async updatePost(id, post) {
-		const out = true;
+	async updatePost(id, obj) {
+		const out = await postSQL.updatePost(id, obj);
 		return out;
 	},
-	async delPost(objId) {
-		const out = true;
+	async delPost(obj) {
+		const out = await postSQL.delPost(obj);
 		return out;
 	},
 };

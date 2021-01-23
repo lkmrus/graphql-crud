@@ -5,46 +5,51 @@ module.exports = buildSchema(`
 	type UserQ {
 		id: Int!
 		name: String
+		email: String
 		active: Boolean
 		username: String
-		update_at: String
+		updated_at: String
 		created_at: String
 	}
 
 	input UserM {
-		name: String!
+		name: String
 		username: String
 		email: String
 	}
 
 	"Схема постов"
 	input PostM {
-		user_id: Int!
-		title: String!
+		id: Int
+		user_id: Int
+		title: String
 		body: String
 	}
 
 	type PostQ {
-		id: Int!
-		user_id: Int!
-		title: String!
+		id: Int
+		user_id: Int
+		title: String
 		body: String
-		update_at: String
+		updated_at: String
 		created_at: String
 	}
 
 	"Схема комментариев"
 	type CommentQ {
-		id: Int!
-		name: String!
-		post_id: Int!
+		id: Int
+		name: String
+		post_id: Int
 		email: String
 		body: String
+		updated_at: String
+		created_at: String
 	}
 
 	input CommentM {
-		post_id: Int!
-		name: String!
+		id: Int
+		post_id: Int
+		name: String
 		email: String
 		body: String
 	}
@@ -56,31 +61,30 @@ module.exports = buildSchema(`
 		getUserList: [UserQ]!
 
 		"Запросы постов"
-		getPost(id: Int!): PostQ
+		getPost(post: PostM!): [PostQ]
 		getPostList: [PostQ]
 
 		"Запросы комментариев"
 		getCommentList: [CommentQ]
-		getCommentByPostId(id: Int!): PostQ
+		getCommentListByPost(post_id: Int!): [CommentQ]
 	}
 
 	"Мутации"
 	type Mutation {
 		"Мутации пользователя"
 		addUser(user: UserM!): Boolean!
-		addUserPack(userList: [UserM]): Boolean!
 		updateUser(id: Int!, user: UserM!): Boolean!
 		delUser(id: Int!): Boolean!
 
 		"Мутации постов"
-		addPost(user: PostM!): Boolean!
-		updatePost(id: Int!, user: PostM!): Boolean!
-		delPost(id: Int!): Boolean!
+		addPost(post: PostM!): Boolean!
+		updatePost(id: Int!, post: PostM!): Boolean!
+		delPost(post: PostM!): Boolean!
 
 		"Мутации комментариев"
 		addComment(comment: CommentM!): Boolean!
-		updateComment(id: Int!, user: CommentM!): Boolean!
-		delComment(id: Int!): Boolean!
+		updateComment(id: Int!, comment: CommentM!): Boolean!
+		delComment(comment: CommentM!): Boolean!
 	}
 
 `);

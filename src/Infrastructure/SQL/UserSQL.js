@@ -1,4 +1,5 @@
 const SQL = require('./SQL');
+const parse = require('./../../Helpers/parse');
 
 class UserSQL extends SQL {
 	constructor() {
@@ -10,25 +11,27 @@ class UserSQL extends SQL {
 	 * @param {object} id
 	 * @returns {object}
 	 * */
-	async getUser(id) {
+	async getUser(obj) {
 		let out = null;
 
 		try {
-			out = await this.db('users').where('active').where({ id });
-		} catch (error) {}
+			out = (await this.db('users').where(obj))[0];
+		} catch (error) {
+			console.log(`Получить пользователя не удалось :>> ${error}`);
+		}
 
 		return out;
 	}
 
 	/**
-	 * Получить всех активных пользователей
+	 * Получить всех пользователей
 	 * @returns {array}
 	 */
 	async getUserList() {
 		let out = [];
 
 		try {
-			out = await this.db('users').where('active');
+			out = await this.db('users');
 		} catch (error) {
 			console.log(`Получить пользователей не удалось :>> ${error}`);
 		}
@@ -38,35 +41,16 @@ class UserSQL extends SQL {
 
 	/**
 	 * Добавить пользователя
-	 * @param {object} user
+	 * @param {object}
 	 * @returns {boolean}
 	 */
-	async addUser(user) {
+	async addUser(obj) {
 		let out = false;
 
 		try {
-			await this.db('users').insert(user);
-			out = true;
+			out = !!(await this.db('users').insert(Object.values(obj)));
 		} catch (error) {
 			console.log(`Ошибка при добавлении пользователя :>> ${error}`);
-		}
-
-		return out;
-	}
-
-	/**
-	 * Добавить несколько пользователей
-	 * @param {array} userList
-	 * @returns {boolean}
-	 */
-	async addUserPack(userList) {
-		let out = false;
-
-		try {
-			await this.db('users').insert(userList);
-			out = true;
-		} catch (error) {
-			console.log(`Ошибка при добавлении пользователей :>> ${error}`);
 		}
 
 		return out;
@@ -77,13 +61,13 @@ class UserSQL extends SQL {
 	 * @param {object}
 	 * @returns {boolean}
 	 */
-	async updateUser(id, objUser) {
+	async updateUser(obj) {
 		let out = false;
 		try {
-			await this.db('users').update(objUser).where(id);
-			out = true;
+			const { id, user } = parse(obj);
+			out = !!(await this.db('users').update(user).where({ id }));
 		} catch (error) {
-			console.log(`Ошибка при добавлении пользователей :>> ${error}`);
+			console.log(`Ошибка при обновлении пользователей :>> ${error}`);
 		}
 
 		return out;
@@ -94,14 +78,13 @@ class UserSQL extends SQL {
 	 * @param {object}
 	 * @returns {boolean}
 	 */
-	async delUser(objId) {
+	async delUser(obj) {
 		let out = false;
 
 		try {
-			await this.db('users').where(objId).del();
-			out = true;
+			out = !!(await this.db('users').where(obj).del());
 		} catch (error) {
-			console.log(`Ошибка при добавлении пользователей :>> ${error}`);
+			console.log(`Ошибка при удалении пользователей :>> ${error}`);
 		}
 
 		return out;

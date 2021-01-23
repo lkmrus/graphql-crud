@@ -1,11 +1,20 @@
-exports.seed = function (knex) {
-	return knex('posts')
-		.del()
-		.then(function () {
-			return knex('posts').insert([
-				{ id: 1, colName: 'rowValue1' },
-				{ id: 2, colName: 'rowValue2' },
-				{ id: 3, colName: 'rowValue3' },
-			]);
-		});
+const { default: axios } = require('axios');
+
+const { fakedata } = require('./../src/Config/default');
+
+exports.seed = async function (knex) {
+	const fakePosts = (await axios.get(`${fakedata.baseUrl}/posts`)).data;
+
+	const posts = fakePosts
+	.filter(el => el.userId)
+		.map((el) => ({
+			user_id: +el.userId,
+			title: el.title,
+			body: el.body.substr(0, 1000),
+		}))
+		.splice(0, 150);
+
+	await knex('posts').del();
+
+	return await knex('posts').insert(posts);
 };
