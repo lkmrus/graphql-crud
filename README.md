@@ -20,6 +20,7 @@ MYSQL_DATABASE = your_dbname
 ```
 
 ## Running the app
+
 ```bash
 # development
 $ npm run dev
@@ -32,4 +33,5 @@ $ npm run start
 ```
 
 ## GraphQL API
+
 `http://localhost:3000/api`

@@ -1,5 +1,5 @@
 const knex = require('knex');
-const { mysql } = require('../../Config/default');
+const { mysql } = require('../Config/default');
 
 class SQL {
 	constructor() {

@@ -1,4 +1,4 @@
-const SQL = require('./SQL');
+const SQL = require('../../System/SQL');
 
 class CommentSQL extends SQL {
 	constructor() {
@@ -12,7 +12,6 @@ class CommentSQL extends SQL {
 	 * */
 	async getCommentListByPost(obj) {
 		let out = [];
-
 		try {
 			out = await this.db('comments').where(obj);
 		} catch (error) {
@@ -83,7 +82,7 @@ class CommentSQL extends SQL {
 
 		try {
 			const { comment } = obj;
-			
+
 			out = !!(await this.db('comments').where(comment).del());
 		} catch (error) {
 			console.log(`Ошибка при удалении коммента :>> ${error}`);

@@ -5,6 +5,8 @@ const resolver = require('./Api/resolver');
 const session = require('express-session');
 const { bodyParserGraphQL } = require('body-parser-graphql');
 const app = express();
+const { mysql } = require('./Config/default');
+const db = require('knex')(mysql);
 
 app.use(session({ secret: 'key session', cookie: { maxAge: 60000 } }));
 app.use(bodyParserGraphQL());
@@ -15,6 +17,7 @@ app.get(
 		schema,
 		rootValue: resolver,
 		graphiql: true,
+		// contextValue: db,
 	})
 );
 

@@ -1,5 +1,5 @@
 const PostSQL = require('../../Infrastructure/SQL/PostSQL');
-const parse = require('./../../Helpers/parse');
+const parse = require('../../Helpers/parse');
 const postSQL = new PostSQL();
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
 
 	/**
 	 * Получить пост/посты
-	 * @param {object} obj
+	 * @param {object}
 	 */
 	async getPost(obj) {
 		const data = parse(obj)

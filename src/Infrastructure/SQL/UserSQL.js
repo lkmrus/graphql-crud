@@ -1,4 +1,4 @@
-const SQL = require('./SQL');
+const SQL = require('../../System/SQL');
 
 class UserSQL extends SQL {
 	constructor() {
@@ -7,7 +7,7 @@ class UserSQL extends SQL {
 
 	/**
 	 * Получить пользователя по ID
-	 * @param {object} id
+	 * @param {object}
 	 * @returns {object}
 	 * */
 	async getUser(obj) {
