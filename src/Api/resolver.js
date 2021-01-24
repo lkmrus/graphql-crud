@@ -1,6 +1,6 @@
-const UserM = require('./Models/UserM');
-const PostM = require('./Models/PostM');
-const CommentM = require('./Models/CommentM');
+const UserM = require('./Resolvers/User');
+const PostM = require('./Resolvers/Post');
+const CommentM = require('./Resolvers/Comment');
 
 const objResolver = {
 	...UserM,

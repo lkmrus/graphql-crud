@@ -1,5 +1,5 @@
 const UserSQL = require('../../Infrastructure/SQL/UserSQL');
-const parse = require('./../../Helpers/parse');
+const parse = require('../../Helpers/parse');
 const userSQL = new UserSQL();
 
 module.exports = {

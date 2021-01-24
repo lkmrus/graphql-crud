@@ -1,5 +1,5 @@
 const CommentSQL = require('../../Infrastructure/SQL/CommentSQL');
-const parse = require('./../../Helpers/parse');
+const parse = require('../../Helpers/parse');
 const commentSQL = new CommentSQL();
 
 module.exports = {

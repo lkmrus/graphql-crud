@@ -35,12 +35,6 @@ module.exports = buildSchema(`
 		created_at: String
 	}
 
-	interface PostI {
-		post: PostQ
-		user: UserQ
-		comment: CommentQ
-	}
-
 	"Схема комментариев"
 	type CommentQ {
 		id: Int
@@ -60,9 +54,23 @@ module.exports = buildSchema(`
 		body: String
 	}
 
+	interface BlogQ {
+		id: Int
+		user_id: Int
+		title: String
+		body: String
+		name: String
+		username: String
+		comments: CommentQ
+	}
+
 
 	"Запросы"
 	type Query {
+
+		"BlogM"
+		getAllPostList(limit: Int): [BlogQ]
+
 		"Запросы пользователя"
 		getUser(id: Int!): UserQ
 		getUserList: [UserQ]!

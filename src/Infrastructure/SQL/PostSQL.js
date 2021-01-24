@@ -1,5 +1,4 @@
-const SQL = require('./SQL');
-
+const SQL = require('../../System/SQL');
 
 class PostSQL extends SQL {
 	constructor() {
@@ -15,7 +14,7 @@ class PostSQL extends SQL {
 		let out = [];
 		try {
 			const { post } = obj;
-			
+
 			out = await this.db('posts').where(post);
 		} catch (error) {
 			console.log(`Получить пост не удалось :>> ${error}`);
@@ -33,6 +32,27 @@ class PostSQL extends SQL {
 
 		try {
 			out = await this.db('posts');
+		} catch (error) {
+			console.log(`Получить посты не удалось :>> ${error}`);
+		}
+
+		return out;
+	}
+
+	/**
+	 * Получить все посты с пользователями и комментариями
+	 */
+	async getAllPostList(limit) {
+		let out = [];
+		console.log('limit :>> ', limit);
+		try {
+			const sql = `
+				SELECT ps.*, usr.name, usr.username
+				FROM posts ps
+				LEFT JOIN users usr ON usr.id = ps.user_id
+				LIMIT :limit
+			;`;
+			out = (await this.db.raw(sql, limit))[0];
 		} catch (error) {
 			console.log(`Получить посты не удалось :>> ${error}`);
 		}
