@@ -7,5 +7,5 @@ npm i knex -g
 npm run migration:down
 npm run migration:latest
 npm run seed:run
-# npm install --production
+npm run build
 NODE_ENV=production npm run start
