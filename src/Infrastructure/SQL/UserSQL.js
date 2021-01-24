@@ -1,5 +1,4 @@
 const SQL = require('./SQL');
-const parse = require('./../../Helpers/parse');
 
 class UserSQL extends SQL {
 	constructor() {
@@ -48,7 +47,7 @@ class UserSQL extends SQL {
 		let out = false;
 
 		try {
-			out = !!(await this.db('users').insert(Object.values(obj)));
+			out = !!(await this.db('users').insert(obj));
 		} catch (error) {
 			console.log(`Ошибка при добавлении пользователя :>> ${error}`);
 		}
@@ -64,7 +63,8 @@ class UserSQL extends SQL {
 	async updateUser(obj) {
 		let out = false;
 		try {
-			const { id, user } = parse(obj);
+			const { id, user } = obj;
+			
 			out = !!(await this.db('users').update(user).where({ id }));
 		} catch (error) {
 			console.log(`Ошибка при обновлении пользователей :>> ${error}`);

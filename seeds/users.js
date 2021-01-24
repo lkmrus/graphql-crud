@@ -1,4 +1,4 @@
-const { default: axios } = require('axios');
+const axios = require('axios');
 
 const { fakedata } = require('./../src/Config/default');
 
@@ -15,5 +15,5 @@ exports.seed = async function (knex) {
 
 	await knex('users').del();
 
-	return await knex('users').insert(users);
+	await knex('users').insert(users);
 };

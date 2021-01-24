@@ -1,5 +1,5 @@
 const SQL = require('./SQL');
-const parse = require('./../../Helpers/parse');
+
 
 class PostSQL extends SQL {
 	constructor() {
@@ -14,7 +14,8 @@ class PostSQL extends SQL {
 	async getPost(obj) {
 		let out = [];
 		try {
-			const { post } = parse(obj);
+			const { post } = obj;
+			
 			out = await this.db('posts').where(post);
 		} catch (error) {
 			console.log(`Получить пост не удалось :>> ${error}`);
@@ -48,7 +49,7 @@ class PostSQL extends SQL {
 		let out = false;
 
 		try {
-			out = !!(await this.db('posts').insert(Object.values(obj)));
+			out = !!(await this.db('posts').insert(obj));
 		} catch (error) {
 			console.log(`Ошибка при добавлении поста :>> ${error}`);
 		}
@@ -64,7 +65,7 @@ class PostSQL extends SQL {
 	async updatePost(obj) {
 		let out = false;
 		try {
-			const { id, post } = parse(obj);
+			const { id, post } = obj;
 			out = !!(await this.db('posts').update(post).where({ id }));
 		} catch (error) {
 			console.log(`Ошибка при обновлении поста :>> ${error}`);
@@ -82,7 +83,7 @@ class PostSQL extends SQL {
 		let out = false;
 
 		try {
-			const { post } = parse(obj);
+			const { post } = obj;
 			out = !!(await this.db('posts').where(post).del());
 		} catch (error) {
 			console.log(`Ошибка при удалении поста :>> ${error}`);

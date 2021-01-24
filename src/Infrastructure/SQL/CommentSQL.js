@@ -1,5 +1,4 @@
 const SQL = require('./SQL');
-const parse = require('./../../Helpers/parse');
 
 class CommentSQL extends SQL {
 	constructor() {
@@ -14,7 +13,6 @@ class CommentSQL extends SQL {
 	async getCommentListByPost(obj) {
 		let out = [];
 
-		console.log('obj :>> ', obj);
 		try {
 			out = await this.db('comments').where(obj);
 		} catch (error) {
@@ -25,14 +23,14 @@ class CommentSQL extends SQL {
 	}
 
 	/**
-	 * Получить комментарии
+	 * Получить 100 комментариев
 	 * @returns {array}
 	 */
 	async getCommentList() {
 		let out = [];
 
 		try {
-			out = await this.db('comments');
+			out = await this.db('comments').limit(100);
 		} catch (error) {
 			console.log(`Получить комментарии не удалось :>> ${error}`);
 		}
@@ -49,7 +47,7 @@ class CommentSQL extends SQL {
 		let out = false;
 
 		try {
-			out = !!(await this.db('comments').insert(Object.values(obj)));
+			out = !!(await this.db('comments').insert(obj));
 		} catch (error) {
 			console.log(`Ошибка при комментария поста :>> ${error}`);
 		}
@@ -65,9 +63,9 @@ class CommentSQL extends SQL {
 	async updateComment(obj) {
 		let out = false;
 		try {
-			const { id, comment } = JSON.parse(JSON.stringify(obj));
+			const { id, comment } = obj;
 
-			out = !!(await this.db('comments').update(comment).where('id', id));
+			out = !!(await this.db('comments').update(comment).where({ id }));
 		} catch (error) {
 			console.log(`Ошибка при обновлении коммента :>> ${error}`);
 		}
@@ -84,7 +82,8 @@ class CommentSQL extends SQL {
 		let out = false;
 
 		try {
-			const { comment } = parse(obj);
+			const { comment } = obj;
+			
 			out = !!(await this.db('comments').where(comment).del());
 		} catch (error) {
 			console.log(`Ошибка при удалении коммента :>> ${error}`);

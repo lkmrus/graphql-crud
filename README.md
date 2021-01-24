@@ -1,14 +1,17 @@
 # <div align="center">GRAPHQL-CRUD<div>
 
 ## Installation
+
 Install with npm:
+
 ```
-$ sudo npm i knex -g
-$ sh deploy.sh
+sudo npm i knex -g
+sh deploy.sh
 ```
 
-## environment for production
-``` 
+## Environment for production
+
+```
 NODE_ENV = production
 MYSQL_HOST = your_host
 MYSQL_USER = your_user
@@ -16,7 +19,17 @@ MYSQL_PASSWORD = your_password
 MYSQL_DATABASE = your_dbname
 ```
 
-## Example
-### JavaScript
+## Running the app
+```bash
+# development
+$ npm run dev
 
-## API
+# watch mode
+$ npm run watch
+
+# production mode
+$ npm run start
+```
+
+## GraphQL API
+`http://localhost:3000/api`

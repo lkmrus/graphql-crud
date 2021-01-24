@@ -1,3 +1,5 @@
+const dotenv = require('dotenv').config();
+
 if (process.env.NODE_ENV === 'production') {
 	module.exports = require('./config.prod.js');
 } else {

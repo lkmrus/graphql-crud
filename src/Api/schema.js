@@ -35,6 +35,12 @@ module.exports = buildSchema(`
 		created_at: String
 	}
 
+	interface PostI {
+		post: PostQ
+		user: UserQ
+		comment: CommentQ
+	}
+
 	"Схема комментариев"
 	type CommentQ {
 		id: Int
@@ -53,6 +59,7 @@ module.exports = buildSchema(`
 		email: String
 		body: String
 	}
+
 
 	"Запросы"
 	type Query {

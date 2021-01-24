@@ -3,7 +3,6 @@ const { graphqlHTTP } = require('express-graphql');
 const schema = require('./Api/schema');
 const resolver = require('./Api/resolver');
 const session = require('express-session');
-const parse = require('./Helpers/parse');
 const { bodyParserGraphQL } = require('body-parser-graphql');
 const app = express();
 

@@ -17,5 +17,5 @@ exports.seed = async function (knex) {
 
 	await knex('comments').del();
 
-	return await knex('comments').insert(comments);
+	await knex('comments').insert(comments);
 };

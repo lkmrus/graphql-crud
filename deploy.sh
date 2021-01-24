@@ -4,8 +4,8 @@
 # git pull
 npm i
 npm i knex -g
-knex migration:up
-knex seed:up
-npm install --production
-NODE_ENV=production npm run dev
-
+npm run migration:down
+npm run migration:latest
+npm run seed:run
+# npm install --production
+NODE_ENV=production npm run start

@@ -1,4 +1,5 @@
 const UserSQL = require('../../Infrastructure/SQL/UserSQL');
+const parse = require('./../../Helpers/parse');
 const userSQL = new UserSQL();
 
 module.exports = {
@@ -29,7 +30,7 @@ module.exports = {
 	 * @returns {boolean}
 	 */
 	async addUser(user) {
-		const out = await userSQL.addUser(user);
+		const out = await userSQL.addUser(Object.values(user));
 		return out;
 	},
 
@@ -38,8 +39,9 @@ module.exports = {
 	 * @param {{id, name, username, email}}
 	 * @returns {boolean}
 	 */
-	async updateUser(id, user) {
-		const out = await userSQL.updateUser(id, user);
+	async updateUser(obj) {
+		const data = parse(obj);
+		const out = await userSQL.updateUser(data);
 		return out;
 	},
 

@@ -1,10 +1,10 @@
-import * as util from 'util';
-import * as fs from 'fs';
+const util = require('util');
+const fs = require('fs');
 
 /**
  * Асинхронное чтение файла
  * @param sFileName
  */
-export async function faReadFile(sFileName) {
+module.exports = async function faReadFile(sFileName) {
 	return util.promisify(fs.readFile)(sFileName, 'utf8');
-}
+};

@@ -1,11 +1,11 @@
 /**
  * задержка на нужное кол-во секунд
- * @param n
+ * @param sTimeMs
  */
-export function wait(n) {
+module.exports = function wait(sTimeMs) {
 	return new Promise((resolve) => {
 		setTimeout(() => {
 			resolve(true);
-		}, n);
+		}, sTimeMs);
 	});
-}
+};

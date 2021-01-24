@@ -1,5 +1,4 @@
-// Update with your config settings.
-// Конфиг для настройки миграций в старой MySQL базе данных
+// Конфиг для настройки миграций
 const conf = require('./src/Config/default');
 
 module.exports = {
